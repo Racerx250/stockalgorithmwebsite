@@ -54,8 +54,8 @@
 					<!-- Use # links to create a single-page site -->
 					<!-- Or create multiple pages and link to them separately here -->
 					<li><a href="index.html">performance</a></li>
-					<li><a href="todaysbuys.html">todays buys</a></li>
-					<li><a href="history.html" class="current-item">history</a></li>
+					<li><a href="todaysbuys.html" class="current-item">todays buys</a></li>
+					<li><a href="history.html">history</a></li>
 					<li><a href="about.html">about</a></li>
 				</ul>
 			</nav>
@@ -65,19 +65,18 @@
 	<div class="fullwidthcontainer">
 		<script>
 		<!--
-			var numshows = 1;
-			var j;
-			for (j = 0; j < 10; j++) {
-				n =  new Date();
-				n.setDate(n.getDate() - j);
-				y = n.getFullYear();
-				m = n.getMonth() + 1;
-				d = n.getDate();
-			   
-		    	document.write("<h1 class='container-title'>" + m + "/" + d + "/" + y + " buys</h1>");
+			n =  new Date();
+			n.setDate(n.getDate() - 0);
+			y = n.getFullYear();
+			m = n.getMonth() + 1;
+			d = n.getDate();
+		   
+	    	document.write("<h1 class='container-title'>" + m + "/" + d + "/" + y + " buys (updates at 2:48pm CST)</h1>");
 
-		    	var i;
-				for (i = 0; i < 1; i++) {
+	    	var i;
+	    	console.log(currentTime);
+	    	if (currentTime > 887) {
+				for (i = 0; i < 50; i++) {
 					document.write("<div class='containerExplanationWrapper'>");
 					document.write("<div class='logoName'>AAPL");
 					document.write("</div>");
@@ -87,22 +86,10 @@
 					document.write("</div>");			
 					document.write("</div>");
 				}
-		    	document.write("<h1 class='container-title'> </h1>");
-		    	document.write("<h1 class='container-title'> </h1>");
-		    }
-
-		    function showMore() {
-		    	console.log(numshows);
-		    	numshows++;
-		    	refresh();
-		    }
+			}
 		-->
 		</script>
-		<!-- <div class="btn-group" style="margin-top:150px; margin-left: 43%; align-items: center;">
-			<div class="dropdown">
-				<button onclick="showMore()">show more</button>
-			</div>
-		</div> -->
+		
 
 	</div>	
 
