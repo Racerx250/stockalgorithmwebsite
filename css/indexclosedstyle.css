@@ -335,8 +335,9 @@ ul.a {
   -webkit-flex-direction: column;
   flex-direction: column;
   margin: 0 auto;
-  max-width: 1150px;
+  max-width: 80vw;
   padding: 1.25rem 0.625rem; 
+  margin-left: 10.7vw;
   margin-top: 2vh; 
   padding-left: 2vw; 
   padding-right: 2vw; 
@@ -432,8 +433,8 @@ ul.a {
 .leftbigcontainer {
   margin: 0px; 
   margin-left: 10.7vw; 
-  padding-top: 3vw; 
-  width: 50vw; 
+  padding-top: 6vh; 
+  width: 51vw; 
   left: 0; 
   height: 70vh; 
   position: absolute; 
@@ -448,13 +449,13 @@ ul.a {
   overflow: scroll; 
   overflow-x: hidden; 
   margin-top: 10vh; 
-  margin-right:100px; 
+  margin-right: 5.5vw; 
   margin-top: 2vh; 
   padding-top: 2vh; 
   padding-bottom: 4vh; 
   width: 27.5vw; 
   right: 3.9vw; 
-  height: 70.1vh; 
+  height: 70vh; 
   background-color: white; 
   position: absolute; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -465,8 +466,8 @@ ul.a {
   overflow-x: hidden; 
   margin: 0px; 
   margin-left: 10.7vw; 
-  padding-top: 3vw;
-  width: 1150px; 
+  padding-top: 3vw; 
+  width: 80vw; 
   left: 0; 
   height: 70vh; 
   position: absolute; 
@@ -511,10 +512,10 @@ ul.a {
   overflow-x: hidden; 
   margin: 0px; 
   margin-left: 10.7vw; 
-  padding-top: 3vw; 
-  width: 57vw; 
-  right: 10.7vw; 
-  height: 70vh; 
+  padding-top: 3vh; 
+  width: 58.3vw; 
+  right: 9.3vw; 
+  height: 73vh; 
   position: absolute; 
   margin-top: 2vh; 
   padding-left: -12vw; 
@@ -549,13 +550,14 @@ ul.a {
   overflow: scroll; 
   overflow-x: hidden; 
   margin-top: 10vh; 
-  margin-right:100px; 
+  /*margin-right:100px; */
+  /*margin-bottom: 0vh;*/
   margin-top: 2vh; 
   padding-top: 2vh; 
-  padding-bottom: 4vh; 
+  padding-bottom: 0vh; 
   width: 20.5vw; 
   left: 10.7vw; 
-  height: 45vh; 
+  height: 48vh; 
   background-color: white; 
   position: absolute; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -567,23 +569,42 @@ ul.a {
   margin-top: 10vh; 
   margin-right:100px; 
   margin-top: 55vh; 
-  padding-top: 2vh; 
-  padding-bottom: 4vh; 
+  padding-top: 2vh;
   width: 20.5vw; 
   left: 10.7vw; 
-  height: 17.1vh; 
+  height: 21vh; 
   background-color: white; 
   position: absolute; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
+.profile {
+  overflow: hidden;
+  align-items: center;
+  margin-top: 1vh;
+  /*margin-bottom: 4vh;*/
+  margin-left: 10%;
+  width: 80%; 
+  /*height: 9%;*/
+  /*-moz-border-radius: 50%;*/
+  /*-webkit-border-radius: 50%;*/
+  /*border-radius: 10%; */
+}
+
 .profile-pic img {
   align-items: center;
-  margin-bottom: 1vw;
-  width: 15vw; 
+  margin-bottom: 3vh;
+  width: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
-  border-radius: 100%; }
+  border-radius: 100%; 
+}
+
+.innerWrapper {
+  margin-top: -15px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
 
 .left-container-wrapper {
     margin-top: -2vh;
@@ -601,8 +622,9 @@ ul.a {
   padding: 10px 24px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   width: 100%; /* Set a width if needed */
-  height: 45.1%;
+  height: 36.5%;
   display: block; /* Make the buttons appear below each other */
+  font-size: .8vw;
 }
 
 .btn-group-new button:last-child {
@@ -615,3 +637,22 @@ ul.a {
   transition: 0.3s ease-in-out;
   background-color: #bfbfbf;
 }
+
+.exploreTextProfileName {
+    /* font-family: Montserrat, Helvetica, Arial, sans-serif;
+    font-size: 30px; */
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    font-size: 160%;
+    font-weight: 300; 
+    text-align: left;
+  }
+
+.exploreTextProfileInfo {
+    /* font-family: Montserrat, Helvetica, Arial, sans-serif;
+    font-size: 30px; */
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    font-size: 80%;
+    font-weight: 300; 
+    text-align: left;
+  }
+
