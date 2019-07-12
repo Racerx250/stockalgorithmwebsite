@@ -2,6 +2,7 @@ body {
   margin:0px;
   padding:0px;
   width:100%;
+  background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }
 
 h1 {
@@ -254,6 +255,7 @@ ul.a {
   -webkit-flex-direction: column;
   flex-direction: column;
   margin: 0 auto;
+  background-color: white;
   /*max-width: 1150px;*/
 /*  padding: 3.75rem 0.625rem; */
 /*  padding: -5rem 0.625rem; 
@@ -574,4 +576,44 @@ ul.a {
   width: 15vw; 
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
-  border-radius: 100%; }
+  border-radius: 100%; 
+}
+
+.innerWrapper {
+  margin-top: -15px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.left-container-wrapper {
+    margin-top: -2vh;
+}
+
+.btn-group-new button {
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+  position: relative;
+  background-color: white; /* Green background */
+  border: 1px solid #bfbfbf; /* Green border */
+  border-left: none;
+  border-right: none;
+  border-top: none; /* Prevent double borders */
+  color: black; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 100%; /* Set a width if needed */
+  height: 45.1%;
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group-new button:last-child {
+  border-bottom: none
+}
+
+
+/* Add a background color on hover */
+.btn-group-new button:hover {
+  transition: 0.3s ease-in-out;
+  background-color: #bfbfbf;
+}
+
+
