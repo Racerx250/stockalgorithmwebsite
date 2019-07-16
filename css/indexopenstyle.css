@@ -204,7 +204,6 @@ ul.a {
 
 .active, .explanationWrapper:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-
 }
 
 .logoName {
@@ -255,7 +254,8 @@ ul.a {
   -webkit-flex-direction: column;
   flex-direction: column;
   margin: 0 auto;
-  background-color: white;
+    background-color: white;
+
   /*max-width: 1150px;*/
 /*  padding: 3.75rem 0.625rem; */
 /*  padding: -5rem 0.625rem; 
@@ -336,11 +336,11 @@ ul.a {
   margin: 0 auto;
   max-width: 80vw;
   padding: 1.25rem 0.625rem; 
+  margin-left: 10.7vw;
   margin-top: 2vh; 
   padding-left: 2vw; 
   padding-right: 2vw; 
-  margin-left: 10.7vw;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);"
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 @media (min-width: 768px) {
@@ -433,9 +433,9 @@ ul.a {
   margin: 0px; 
   margin-left: 10.7vw; 
   padding-top: 6vh; 
-  width: 51.3vw; 
+  width: 51vw; 
   left: 0; 
-  height: 70vh; 
+  height: 74vh; 
   position: absolute; 
   margin-top: 2vh; 
   padding-left: -12vw; 
@@ -454,7 +454,7 @@ ul.a {
   padding-bottom: 4vh; 
   width: 27.5vw; 
   right: 3.9vw; 
-  height: 70vh; 
+  height: 74vh; 
   background-color: white; 
   position: absolute; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -468,7 +468,7 @@ ul.a {
   padding-top: 3vw; 
   width: 80vw; 
   left: 0; 
-  height: 70vh; 
+  height: 74vh; 
   position: absolute; 
   margin-top: 2vh; 
   padding-left: -12vw; 
@@ -514,13 +514,19 @@ ul.a {
   padding-top: 3vh; 
   width: 58.3vw; 
   right: 9.3vw; 
-  height: 73vh; 
+  height: 77vh; 
   position: absolute; 
   margin-top: 2vh; 
   padding-left: -12vw; 
   padding-right: 0vw; 
   background-color: white; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.innerWrapper {
+  margin-top: -15px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .rightbigcontainer {
@@ -550,7 +556,7 @@ ul.a {
   padding-bottom: 0vh; 
   width: 20.5vw; 
   left: 10.7vw; 
-  height: 48vh; 
+  height: 53vh; 
   background-color: white; 
   position: absolute; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -559,9 +565,8 @@ ul.a {
 .rightbigcontainerbottom {
   overflow: scroll; 
   overflow-x: hidden; 
-  margin-top: 10vh; 
-  margin-right:100px; 
-  margin-top: 55vh; 
+  margin-right: 100px; 
+  margin-top: 59vh; 
   padding-top: 2vh;
   width: 20.5vw; 
   left: 10.7vw; 

@@ -436,7 +436,7 @@ ul.a {
   padding-top: 6vh; 
   width: 51vw; 
   left: 0; 
-  height: 70vh; 
+  height: 74vh; 
   position: absolute; 
   margin-top: 2vh; 
   padding-left: -12vw; 
@@ -455,7 +455,7 @@ ul.a {
   padding-bottom: 4vh; 
   width: 27.5vw; 
   right: 3.9vw; 
-  height: 70vh; 
+  height: 74vh; 
   background-color: white; 
   position: absolute; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -469,7 +469,7 @@ ul.a {
   padding-top: 3vw; 
   width: 80vw; 
   left: 0; 
-  height: 70vh; 
+  height: 74vh; 
   position: absolute; 
   margin-top: 2vh; 
   padding-left: -12vw; 
@@ -515,7 +515,7 @@ ul.a {
   padding-top: 3vh; 
   width: 58.3vw; 
   right: 9.3vw; 
-  height: 73vh; 
+  height: 77vh; 
   position: absolute; 
   margin-top: 2vh; 
   padding-left: -12vw; 
@@ -557,7 +557,7 @@ ul.a {
   padding-bottom: 0vh; 
   width: 20.5vw; 
   left: 10.7vw; 
-  height: 48vh; 
+  height: 53vh; 
   background-color: white; 
   position: absolute; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -566,9 +566,8 @@ ul.a {
 .rightbigcontainerbottom {
   overflow: scroll; 
   overflow-x: hidden; 
-  margin-top: 10vh; 
-  margin-right:100px; 
-  margin-top: 55vh; 
+  margin-right: 100px; 
+  margin-top: 59vh; 
   padding-top: 2vh;
   width: 20.5vw; 
   left: 10.7vw; 
