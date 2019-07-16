@@ -36,8 +36,144 @@
 	}
 
 	getStylesheet();
+
+	var stock_buys = new Array();
 	-->
 	</script>
+
+	<script type="text/javascript">
+
+      // Client ID and API key from the Developer Console
+      var CLIENT_ID = '831404325694-1dpirgt84o8ev9aohud28jgedr90in8b.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyAuAxXdwJCH17k-QAJDZCjeknQDt8EFD8c';
+
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES = 'https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.file';
+
+      var authorizeButton = document.getElementById('authorize_button');
+      var signoutButton = document.getElementById('signout_button');
+
+      /**
+       *  On load, called to load the auth2 library and API client library.
+       */
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
+
+      /**
+       *  Initializes the API client library and sets up sign-in state
+       *  listeners.
+       */
+      function initClient() {
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        }).then(function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          // gapi.auth2.getAuthInstance().signIn();
+          // authorizeButton.onclick = handleAuthClick;
+          // signoutButton.onclick = handleSignoutClick;
+        }, function(error) {
+           appendPre(JSON.stringify(error, null, 2));
+        });
+      }
+
+      /**
+       *  Called when the signed in status changes, to update the UI
+       *  appropriately. After a sign-in, the API is called.
+       */
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          listFiles();
+        } 
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node. Used to display the results of the API call.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('content');
+        console.log(message)
+        var textContent = document.createTextNode(message + '\n');
+        // pre.appendChild(textContent);
+      }
+
+      /**
+       * Print files.
+       */
+      function listFiles() {
+        gapi.client.drive.files.list({
+          	'pageSize': 10,
+          	'fields': "nextPageToken, files(id, name)"
+        }).then(function(response) {
+          	var files = response.result.files;
+          	if (files && files.length > 0) {
+              for (var i = 0; i < files.length; i++) {
+
+            		var file = files[i];
+            		appendPre(file.name + ' (' + file.id + ')');
+
+            		if (file.name == 'day_buys') {
+
+              		gapi.client.drive.files.export({
+      						    fileId : file.id,
+      						    mimeType : 'text/plain'
+    						  }).then(function(success){
+      							
+                    console.log("asdfasdfab");
+    						    console.log(success.body);
+    						    stock_buys = success.body.split("\n");
+    						    console.log(stock_buys);   
+      						
+                  }, function(fail){
+    						    
+                    console.log(fail);
+      							console.log("asdfasdfa");
+    						    console.log('Error '+ fail.result.error.message);
+    						  
+                  });
+                }
+            	}
+              load = true;
+          	} else {
+            	appendPre('No files found.');
+          	}
+        });
+      }
+
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
 
 	<script src="jquery-3.4.1.min.js"></script>
 
@@ -80,7 +216,8 @@
 		</div>
 	</header>
 
-	<div class="fullwidthcontainer">
+	<div class="fullwidthcontainer" id="buys">
+
 		<script>
 		<!--
 			n =  new Date();
@@ -88,23 +225,34 @@
 			y = n.getFullYear();
 			m = n.getMonth() + 1;
 			d = n.getDate();
-		   
-	    	document.write("<h1 class='container-title'>" + m + "/" + d + "/" + y + " buys (updates at 2:48pm CST)</h1>");
+	    	document.write("<h1 class='container-title'>" + m + "/" + d + "/" + y + " ranked buys (updates at 2:48pm CST)</h1>");
 
-	    	var i;
-	    	console.log(currentTime);
-	    	if (currentTime > 887) {
-				for (i = 0; i < 50; i++) {
-					document.write("<div class='containerExplanationWrapper'>");
-					document.write("<div class='logoName'>AAPL");
-					document.write("</div>");
-					document.write("<div class='explanationText'>");
-					document.write(i + " units");
-					// document.write("Alfred C. Glassell, III, Fellow in Drug Policy at the Baker Institute");
-					document.write("</div>");			
-					document.write("</div>");
-				}
+			var counter = 0
+			function waitFor(condition, callback) {
+          		counter++;
+			    if(!condition()) {
+			        console.log('waiting');
+			        window.setTimeout(waitFor.bind(null, condition, callback), 100); /* this checks the flag every 100 milliseconds*/
+			    } else {
+			        console.log('done');
+			        callback();
+			    }
 			}
+
+			waitFor(() => counter > 20, () => {
+			   
+		    	var i;
+		    	console.log(currentTime);
+		    	if (currentTime > 887) {
+					for (i = 0; i < stock_buys.length; i++) {
+						var temp_string = '';
+						temp_string = temp_string.concat("<div class='containerExplanationWrapper'>\n", "<div class='logoName'>" + stock_buys[i] + "\n",
+										"</div>\n", "<div class='explanationText'>\n", "rank #" + i, "</div>\n", "</div>");
+
+						document.getElementById('buys').innerHTML = document.getElementById('buys').innerHTML.concat(temp_string);
+					}
+				}
+			});
 		-->
 		</script>
 		

@@ -16,11 +16,14 @@
 
 	<link rel="icon" href="images/robot-emoji.png">
 
+	<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+
 
 <!-- 	<link rel="stylesheet" href="css/overviewstyle.css">
  -->
 	<script>
 	<!--
+	var loaded = false;
 	function getStylesheet() {
 		var currentMinutes = new Date().getMinutes();
 		var currentHours = new Date().getHours();
@@ -177,6 +180,7 @@
       // }
 
       // initClient();
+      var stock_holds = new Array();
 
 	-->
 	</script>
@@ -273,25 +277,36 @@
         }).then(function(response) {
           	var files = response.result.files;
           	if (files && files.length > 0) {
-            	for (var i = 0; i < files.length; i++) {
-              		var file = files[i];
-              		appendPre(file.name + ' (' + file.id + ')');
-              		if (file.name == 'test') {
-	              		gapi.client.drive.files.export({
-						    fileId : file.id,
-						    mimeType : 'text/plain'
-						}).then(function(success){
-							console.log("asdfasdfab");
-						    console.log(success);
-						    // console.log("huh");
-						    //success.result    
-						}, function(fail){
-						    console.log(fail);
-							console.log("asdfasdfa");
-						    console.log('Error '+ fail.result.error.message);
-						})
-					}
+              for (var i = 0; i < files.length; i++) {
+
+            		var file = files[i];
+            		appendPre(file.name + ' (' + file.id + ')');
+
+            		if (file.name == 'current_holds') {
+
+              		gapi.client.drive.files.export({
+      						    fileId : file.id,
+      						    mimeType : 'text/plain'
+    						  }).then(function(success){
+      							
+                    console.log("asdfasdfab");
+    						    console.log(success.body);
+    						    var temp = success.body.split("\n");
+    						    for (i in temp) {
+    						    	stock_holds = stock_holds.concat(temp[i].split(" "));
+    						    }
+    						    console.log(stock_holds);   
+      						
+                  }, function(fail){
+    						    
+                    console.log(fail);
+      							console.log("asdfasdfa");
+    						    console.log('Error '+ fail.result.error.message);
+    						  
+                  });
+                }
             	}
+              load = true;
           	} else {
             	appendPre('No files found.');
           	}
@@ -352,7 +367,7 @@
 	</header>
 
 	<div class="leftbigcontainer">
-		<h1 class="page-title">portfolio value :)</h1>
+		<h1 class="page-title">portfolio value</h1>
 
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   		<div id="chart_div" style=""></div>
@@ -429,21 +444,41 @@
 
 	</div>	
 
-	<div class="rightsmallcontainer">
+	<div class="rightsmallcontainer" id="holds">
 		<h1 class="page-title" style="margin-bottom: 1vh">current holds</h1>
 		<script>
 		<!--
-			var i;
-			for (i = 0; i < 50; i++) {
-				document.write("<div class='explanationWrapper'>");
-				document.write("<div class='logoName'>AAPL");
-				document.write("</div>");
-				document.write("<div class='explanationText'>");
-				document.write(i + " units");
-				// document.write("Alfred C. Glassell, III, Fellow in Drug Policy at the Baker Institute");
-				document.write("</div>");			
-				document.write("</div>");
+      var counter = 0
+			function waitFor(condition, callback) {
+          counter++;
+			    if(!condition()) {
+			        console.log('waiting');
+			        window.setTimeout(waitFor.bind(null, condition, callback), 100); /* this checks the flag every 100 milliseconds*/
+			    } else {
+			        console.log('done');
+			        callback();
+			    }
 			}
+
+			waitFor(() => counter > 20, () => {
+				console.log("omg");
+				console.log(stock_holds);
+				var i;
+				// var temp_string = '';
+				for (i = 0; i < stock_holds.length / 2; i++) {
+          // window.setTimeout(() => {
+            var temp_string = '';
+            temp_string = temp_string.concat("<div class='explanationWrapper'>\n", "<div class='logoName'>" + stock_holds[2*i] + "\n", 
+            "</div>\n", "<div class='explanationText'>\n", stock_holds[(2*i) + 1] + " units\n", "</div>\n", "</div>\n");
+
+            document.getElementById('holds').innerHTML = document.getElementById('holds').innerHTML.concat(temp_string);
+          // }, 1000)
+					
+				}
+				// console.log(temp_string);
+			});
+
+			
 
 		-->
 		</script>

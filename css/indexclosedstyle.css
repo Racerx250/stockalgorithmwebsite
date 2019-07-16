@@ -187,6 +187,15 @@ ul.a {
   color: black;
 }
 
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .explanationWrapper {
   /*margin: 1%;*/
   height: 7vh;
@@ -198,7 +207,15 @@ ul.a {
   background-color: white;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+
+  transition: .3s;
+
+    /*animation: 1s ease-out 0s 1 slideInFromLeft;*/
+
+
+
+  
+
   /* width: 100vw; */
   /* margin: 4vh 14vw; */
 }
@@ -207,9 +224,12 @@ ul.a {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+
+
+
 .logoName {
   color: #434444;
-  font-size: 16px;
+  font-size: 120%;
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   padding-top: 1vh;
   margin-left: .7vw;
@@ -223,7 +243,7 @@ ul.a {
 
 /*  margin-bottom: 2vh;
 */  line-height: 1.6;
-  font-size: 10px;
+  font-size: 95%;
   color: #414650;
   font-family: Montserrat, Helvetica, Arial, sans-serif;
 }
