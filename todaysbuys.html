@@ -239,7 +239,7 @@
 			    }
 			}
 
-			waitFor(() => counter > 20, () => {
+			waitFor(() => counter > 15 || stock_buys.length > 0, () => {
 			   
 		    	var i;
 		    	console.log(currentTime);

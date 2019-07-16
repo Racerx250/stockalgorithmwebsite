@@ -460,7 +460,7 @@
 			    }
 			}
 
-			waitFor(() => counter > 20, () => {
+			waitFor(() => counter > 15 || stock_holds.length > 0, () => {
 				console.log("omg");
 				console.log(stock_holds);
 				var i;
