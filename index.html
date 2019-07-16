@@ -14,6 +14,9 @@
 	<!-- Include Montserrat font from Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700" rel="stylesheet">
 
+	<link rel="icon" href="images/robot-emoji.png">
+
+
 <!-- 	<link rel="stylesheet" href="css/overviewstyle.css">
  -->
 	<script>
@@ -68,15 +71,126 @@
 	// get_doc("1caQbgCfH_v95uONNytWuZL4LLEFLDO2u");
 	
 	// Client ID and API key from the Developer Console
-      var CLIENT_ID = '1caQbgCfH_v95uONNytWuZL4LLEFLDO2u';
-      var API_KEY = 'AIzaSyCwxQGbEPzbn6Ced_b1L7hMK84ItoVNkFw';
+      // var CLIENT_ID = '214231396634-k9rpos37mknlm8daeoa06ffgbvks4bmq.apps.googleusercontent.com';
+      // var API_KEY = 'AIzaSyCwxQGbEPzbn6Ced_b1L7hMK84ItoVNkFw';
+
+      // // Array of API discovery doc URLs for APIs used by the quickstart
+      // var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
+
+      // // Authorization scopes required by the API; multiple scopes can be
+      // // included, separated by spaces.
+      // var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+
+      // var authorizeButton = document.getElementById('authorize_button');
+      // var signoutButton = document.getElementById('signout_button');
+
+      // /**
+      //  *  On load, called to load the auth2 library and API client library.
+      //  */
+      // function handleClientLoad() {
+      //   gapi.load('client:auth2', initClient);
+      // }
+
+      // /**
+      //  *  Initializes the API client library and sets up sign-in state
+      //  *  listeners.
+      //  */
+      // function initClient() {
+      //   gapi.client.init({
+      //     apiKey: API_KEY,
+      //     clientId: CLIENT_ID,
+      //     discoveryDocs: DISCOVERY_DOCS,
+      //     scope: SCOPES
+      //   }).then(function () {
+      //     // Listen for sign-in state changes.
+      //     gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+      //     // Handle the initial sign-in state.
+      //     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      //     authorizeButton.onclick = handleAuthClick;
+      //     signoutButton.onclick = handleSignoutClick;
+      //   }, function(error) {
+      //     appendPre(JSON.stringify(error, null, 2));
+      //   });
+      // }
+
+      // *
+      //  *  Called when the signed in status changes, to update the UI
+      //  *  appropriately. After a sign-in, the API is called.
+       
+      // function updateSigninStatus(isSignedIn) {
+      //   if (isSignedIn) {
+      //     authorizeButton.style.display = 'none';
+      //     signoutButton.style.display = 'block';
+      //     listFiles();
+      //   } else {
+      //     authorizeButton.style.display = 'block';
+      //     signoutButton.style.display = 'none';
+      //   }
+      // }
+
+      // /**
+      //  *  Sign in the user upon button click.
+      //  */
+      // function handleAuthClick(event) {
+      //   gapi.auth2.getAuthInstance().signIn();
+      // }
+
+      // /**
+      //  *  Sign out the user upon button click.
+      //  */
+      // function handleSignoutClick(event) {
+      //   gapi.auth2.getAuthInstance().signOut();
+      // }
+
+      // /**
+      //  * Append a pre element to the body containing the given message
+      //  * as its text node. Used to display the results of the API call.
+      //  *
+      //  * @param {string} message Text to be placed in pre element.
+      //  */
+      // function appendPre(message) {
+      //   var pre = document.getElementById('content');
+      //   var textContent = document.createTextNode(message + '\n');
+      //   pre.appendChild(textContent);
+      // }
+
+      // /**
+      //  * Print files.
+      //  */
+      // function listFiles() {
+      //   gapi.client.drive.files.list({
+      //     'pageSize': 10,
+      //     'fields': "nextPageToken, files(id, name)"
+      //   }).then(function(response) {
+      //     appendPre('Files:');
+      //     var files = response.result.files;
+      //     if (files && files.length > 0) {
+      //       for (var i = 0; i < files.length; i++) {
+      //         var file = files[i];
+      //         appendPre(file.name + ' (' + file.id + ')');
+      //       }
+      //     } else {
+      //       appendPre('No files found.');
+      //     }
+      //   });
+      // }
+
+      // initClient();
+
+	-->
+	</script>
+	<script type="text/javascript">
+      // Client ID and API key from the Developer Console
+      var CLIENT_ID = '831404325694-tv3qv7ra7g0cptsiio8spd09k10orleg.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyAuAxXdwJCH17k-QAJDZCjeknQDt8EFD8c';
 
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
 
       // Authorization scopes required by the API; multiple scopes can be
       // included, separated by spaces.
-      var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+      var SCOPES = 'https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/drive.file';
 
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
@@ -104,10 +218,11 @@
 
           // Handle the initial sign-in state.
           updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-          authorizeButton.onclick = handleAuthClick;
-          signoutButton.onclick = handleSignoutClick;
+          // gapi.auth2.getAuthInstance().signIn();
+          // authorizeButton.onclick = handleAuthClick;
+          // signoutButton.onclick = handleSignoutClick;
         }, function(error) {
-          appendPre(JSON.stringify(error, null, 2));
+           appendPre(JSON.stringify(error, null, 2));
         });
       }
 
@@ -117,13 +232,8 @@
        */
       function updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
           listFiles();
-        } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
-        }
+        } 
       }
 
       /**
@@ -148,8 +258,9 @@
        */
       function appendPre(message) {
         var pre = document.getElementById('content');
+        console.log(message)
         var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
+        // pre.appendChild(textContent);
       }
 
       /**
@@ -157,25 +268,63 @@
        */
       function listFiles() {
         gapi.client.drive.files.list({
-          'pageSize': 10,
-          'fields': "nextPageToken, files(id, name)"
+          	'pageSize': 10,
+          	'fields': "nextPageToken, files(id, name)"
         }).then(function(response) {
-          appendPre('Files:');
-          var files = response.result.files;
-          if (files && files.length > 0) {
-            for (var i = 0; i < files.length; i++) {
-              var file = files[i];
-              appendPre(file.name + ' (' + file.id + ')');
-            }
-          } else {
-            appendPre('No files found.');
-          }
+          	var files = response.result.files;
+          	if (files && files.length > 0) {
+            	for (var i = 0; i < files.length; i++) {
+              		var file = files[i];
+              		appendPre(file.name + ' (' + file.id + ')');
+              		if (file.name == 'test') {
+	              		gapi.client.drive.files.export({
+						    fileId : file.id,
+						    mimeType : 'text/plain'
+						}).then(function(success){
+							console.log("asdfasdfab");
+						    console.log(success);
+						    // console.log("huh");
+						    //success.result    
+						}, function(fail){
+						    console.log(fail);
+							console.log("asdfasdfa");
+						    console.log('Error '+ fail.result.error.message);
+						})
+					}
+            	}
+          	} else {
+            	appendPre('No files found.');
+          	}
         });
+  //    	gapi.client.drive.files.export({
+		//     fileId : '',
+		//     mimeType : 'text'
+		// }).then(function(success){
+		// 	console.log("asdfasdfab");
+		//     // console.log(success);
+		//     // console.log("huh");
+		//     //success.result    
+		// }, function(fail){
+		//     console.log(fail);
+		// 	console.log("asdfasdfa");
+		//     console.log('Error '+ fail.result.error.message);
+		// })
       }
 
-      initClient();
-	-->
-	</script>
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+
+    <!-- <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+	<script>
+	window.onLoadCallback = function(){
+	  listFiles();
+	}
+	</script> -->
+    
 	<noscript><link href="css/indexopenstyle.css" rel="stylesheet"></noscript>
 
 </head>
@@ -203,7 +352,7 @@
 	</header>
 
 	<div class="leftbigcontainer">
-		<h1 class="page-title">portfolio value</h1>
+		<h1 class="page-title">portfolio value :)</h1>
 
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   		<div id="chart_div" style=""></div>
