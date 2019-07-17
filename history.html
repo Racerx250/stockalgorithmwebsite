@@ -36,8 +36,22 @@
 	}
 
 	getStylesheet();
+
+
 	-->
 	</script>
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+    	console.log("here");
+    	$.get( "https://docs.google.com/uc?export=download&id=1caQbgCfH_v95uONNytWuZL4LLEFLDO2u", function( data ) {
+		  var text = data;
+		  console.log(text);
+		});
+    </script>
+
+
 	<noscript><link href="css/indexopenstyle.css" rel="stylesheet"></noscript>
 
 </head>
