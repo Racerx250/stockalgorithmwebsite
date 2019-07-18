@@ -115,11 +115,19 @@
                 data.addColumn('number', '$');
 
                 waitFor(() => counter > 15 || week_performance.length != [], () => {
+                    if (week_performance[week_performance.length - 1] == '')
+                    {
+                        week_performance = week_performance.slice(0,week_performance.length - 2);;
+                    }
+
                     console.log(week_performance);
+
                     rows = new Array(parseInt(week_performance.length));
                     for (i in week_performance) {
                         rows[parseInt(i)] = [parseInt(i), parseFloat(week_performance[i])];
                     }
+
+                    console.log(rows)
 
                     document.getElementById('stock_equity').innerHTML = document.getElementById('stock_equity').innerHTML.concat(week_performance[week_performance.length - 1]);
 
