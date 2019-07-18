@@ -43,21 +43,25 @@
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script>
-    	console.log("here");
-    	$.get( "https://docs.google.com/uc?export=download&id=1caQbgCfH_v95uONNytWuZL4LLEFLDO2u", function( data ) {
-		  var text = data;
-		  console.log(text);
-		});
-    </script>
-
 
 	<noscript><link href="css/indexopenstyle.css" rel="stylesheet"></noscript>
 
 </head>
 
 <body>
-
+	<script>
+    	console.log("here1");
+    	var link = document.createElement("a");
+		link.download = 'aha';
+		link.href = 'https://docs.google.com/uc?export=download&id=1caQbgCfH_v95uONNytWuZL4LLEFLDO2u';
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+		delete link;
+  //   	$.get( "https://drive.google.com/file/d/1caQbgCfH_v95uONNytWuZL4LLEFLDO2u/view?usp=sharing", function( data ) {
+		 
+		// });
+    </script>
 	<header class="site-header">
 		<div class="site-header-main">
 			<div class="site-branding">

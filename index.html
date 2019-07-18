@@ -184,7 +184,10 @@
 
 	-->
 	</script>
-	<script type="text/javascript">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '831404325694-1dpirgt84o8ev9aohud28jgedr90in8b.apps.googleusercontent.com';
       var API_KEY = 'AIzaSyAuAxXdwJCH17k-QAJDZCjeknQDt8EFD8c';
@@ -331,7 +334,7 @@
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
+    </script> -->
 
     <!-- <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
 	<script>
@@ -459,10 +462,29 @@
 			        callback();
 			    }
 			}
+      console.log("huh?");
+      function readFiles()
+      {
+        console.log("oh yea1h")
+        $.get('./currentorders.txt', function(data) {
+            var temp = data.split("\n");
+            for (i in temp) {
+              stock_holds = stock_holds.concat(temp[i].split(" "));
+            }
+        }, "text");
+      }
+      readFiles();
 
-			waitFor(() => counter > 15 || stock_holds.length > 0, () => {
+			waitFor(() => counter > 15 || stock_holds.length != [], () => {
 				console.log("omg");
-				console.log(stock_holds);
+				console.log(stock_holds.length % 2);
+
+        if (stock_holds.length % 2 == 1 && stock_holds.length >= 1)
+        {
+          console.log('yis');
+          stock_holds = stock_holds.slice(0,stock_holds.length - 1);
+        }
+
 				var i;
 				// var temp_string = '';
 				for (i = 0; i < stock_holds.length / 2; i++) {
