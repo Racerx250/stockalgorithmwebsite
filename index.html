@@ -40,8 +40,20 @@
 	}
 
 	getStylesheet();
-  var stock_holds = new Array();
+    var stock_holds = new Array();
+    var week_performance = new Array();
 
+    var counter = 0
+    function waitFor(condition, callback) {
+        counter++;
+        if(!condition()) {
+            console.log('waiting');
+            window.setTimeout(waitFor.bind(null, condition, callback), 100); /* this checks the flag every 100 milliseconds*/
+        } else {
+            console.log('done');
+            callback();
+        }
+    }
 	-->
 	</script>
 
@@ -75,79 +87,85 @@
 
 	<div class="leftbigcontainer">
 		<h1 class="page-title">portfolio value</h1>
+        <h1 class="page-title" id="stock_equity">$</h1>
 
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  		<div id="chart_div" style=""></div>
+  		<div id="chart_div" style="margin-top: -1vh;"></div>
   		<script>
+        function readFiles()
+        {
+            $.get('./current_holds.txt', function(data) {
+                var temp = data.split("\n");
+                for (i in temp) {
+                    stock_holds = stock_holds.concat(temp[i].split(" "));
+                }
+            }, "text");
+            $.get('./week.txt', function(data) {
+                week_performance = data.split("\n");
+            }, "text");
+        }
+        readFiles();
+
   			google.charts.load('current', {packages: ['corechart', 'line']});
 			google.charts.setOnLoadCallback(drawCurveTypes);
 
 			function drawCurveTypes() {
-			      var data = new google.visualization.DataTable();
-			      data.addColumn('number', 'X');
-			      data.addColumn('number', 'Dogs');
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'X');
+                data.addColumn('number', '$');
 
-			      data.addRows([[0, 653.94], [1, 666.76], [2, 663.87], [3, 667.31],
-			      				[4, 667.31], [5, 667.31], [6, 667.31], [7, 669.6],
-								[8, 669.6], [9, 669.6], [10, 666.3], [11, 666.3],
-								[12, 666.3], [13, 665.77], [14, 665.77], [15, 666.16],
-								[16, 672.41], [17, 671], [18, 671], [19, 671],
-								[20, 675.54], [21, 674.16], [22, 676.22], [23, 676.4],
-								[24, 677.64], [25, 677.64], [26, 677.64], [27, 673.56],
-								[28, 669.96], [29, 671.64], [30, 673.62], [31, 673.1],
-								[32, 673.1], [33, 673.1], [34, 676.23], [35, 677.58],
-								[36, 677.58], [37, 677.82], [38, 677.9], [39, 677.9],
-								[40, 677.9], [41, 688.06], [42, 684.84], [43, 684.58],
-								[44, 686.67], [45, 686.69], [46, 686.69], [47, 686.69],
-								[48, 687.68], [49, 689.11], [50, 688.82], [51, 688.81],
-								[52, 690.34], [53, 690.34], [54, 690.34], [55, 691.23],
-								[56, 691.16], [57, 692.33], [58, 692.45], [59, 693.57],
-								[60, 693.57], [61, 693.57], [62, 693.63], [63, 694.32],
-								[64, 694.83], [65, 694.59], [66, 694.24], [67, 694.24],
-								[68, 694.24], [69, 694.58], [70, 695.52], [71, 694.79],
-								[72, 695.89], [73, 694.04], [74, 694.04], [75, 694.04],
-								[76, 695.27], [77, 697.14], [78, 697.99], [79, 698.86],
-								[80, 699.68], [81, 699.68], [82, 699.68], [83, 699.33],
-								[84, 699.27], [85, 698.01], [86, 699.16], [87, 700.98],
-								[88, 700.98], [89, 700.98], [90, 702.2], [91, 704.28],
-								[92, 704.85], [93, 705.42], [94, 706.34]]);
+                waitFor(() => counter > 15 || week_performance.length != [], () => {
+                    console.log(week_performance);
+                    rows = new Array(parseInt(week_performance.length));
+                    for (i in week_performance) {
+                        rows[parseInt(i)] = [parseInt(i), parseFloat(week_performance[i])];
+                    }
 
-			      var options = {
-			        hAxis: {
-			          title: 'Time'
-			        },
-			        // vAxis: {
-			        //   title: 'Popularity'
-			        // },
-			        series: {
-			          1: {curveType: 'function'}
-			        },
-                	height: 350,
-                	// width: 400
-			      };
+                    document.getElementById('stock_equity').innerHTML = document.getElementById('stock_equity').innerHTML.concat(week_performance[week_performance.length - 1]);
 
-			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-			      chart.draw(data, options);
-			    }
+                    data.addRows(rows);
+
+                    var options = {
+                    hAxis: {
+                      title: 'Time'
+                    },
+                    // vAxis: {
+                    //   title: 'Popularity'
+                    // },
+                    series: {
+                      1: {curveType: 'function'}
+                    },
+                    height: 350,
+                    // width: 400
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                });
+		    }
   		</script>
-
-  		<div class="btn-group" style="margin-top:13vh; margin-left: 4.5vw; align-items: center;">
-			<div class="dropdown">
-				<button onclick="location.href='overview.html';">1 week</button>
-			</div>
-			<div class="dropdown">
-				<button onclick="location.href='history.html';">1 month</button>
-			</div>
-			<div class="dropdown">
-				<button onclick="location.href='interviews.html';">3 months</button>
-			</div>
-			<div class="dropdown">
-				<button onclick="location.href='interviews.html';">1 year</button>
-			</div>
-			<div class="dropdown">
-				<button onclick="location.href='interviews.html';">all time</button>
-			</div>
-		</div>
+        <div class="btn-group-container">
+      		<div class="btn-group">
+                <div class="dropdown">
+                    <button onclick="location.href='overview.html';">1 day</button>
+                </div>
+    			<div class="dropdown">
+    				<button onclick="location.href='overview.html';">1 week</button>
+    			</div>
+    			<div class="dropdown">
+    				<button onclick="location.href='history.html';">1 month</button>
+    			</div>
+    			<div class="dropdown">
+    				<button onclick="location.href='interviews.html';">3 months</button>
+    			</div>
+    			<div class="dropdown">
+    				<button onclick="location.href='interviews.html';">1 year</button>
+    			</div>
+    			<div class="dropdown">
+    				<button onclick="location.href='interviews.html';">all time</button>
+    			</div>
+    		</div>
+        </div>
 
 	</div>	
 
@@ -155,30 +173,6 @@
 		<h1 class="page-title" style="margin-bottom: 1vh">current holds</h1>
 		<script>
 		<!--
-      var counter = 0
-			function waitFor(condition, callback) {
-          counter++;
-			    if(!condition()) {
-			        console.log('waiting');
-			        window.setTimeout(waitFor.bind(null, condition, callback), 100); /* this checks the flag every 100 milliseconds*/
-			    } else {
-			        console.log('done');
-			        callback();
-			    }
-			}
-
-      function readFiles()
-      {
-        console.log("oh yea1h")
-        $.get('./current_holds.txt', function(data) {
-            var temp = data.split("\n");
-            for (i in temp) {
-              stock_holds = stock_holds.concat(temp[i].split(" "));
-            }
-        }, "text");
-      }
-      readFiles();
-
 			waitFor(() => counter > 15 || stock_holds.length != [], () => {
 				console.log("omg");
 				console.log(stock_holds.length % 2);

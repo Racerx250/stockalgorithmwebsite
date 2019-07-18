@@ -101,14 +101,18 @@ ul.a {
   width: 100%;
 }
 
+/*.btn-group {
+  margin-top:13vh; 
+  margin-left: 4.5vw; 
+  align-items: center;
+}
+
 .btn-group button {
-  margin-top: -5vh;
-  /*background-color: #4CAF50; /* Green background */
-  /*border: 1px solid green; /* Green border */
-  color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  float: left; /* Float the buttons side by side */
+  margin-top: -50vh;
+  color: white; 
+  padding: 10px 24px; 
+  cursor: pointer; 
+  float: left; 
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   font-size: 1.125rem;
   font-weight: 300; 
@@ -120,6 +124,8 @@ ul.a {
   transition: all 0.3s ease-in-out;
 
   border-style: double;
+
+  
 }
 
 .btn-group button:hover {
@@ -128,7 +134,7 @@ ul.a {
   background-color: white;
   color: black;
 }
-
+*/
 .dropdown-content {
   display: none;
   position: absolute;
@@ -372,12 +378,14 @@ ul.a {
   display: inline-block;
 }
 
+.btn-group-container {
+  margin-left: 10%;
+}
+
 .btn-group button {
-  margin-top: -10vh;
-  /*background-color: #4CAF50; /* Green background */
-  /*border: 1px solid green; /* Green border */
+  margin-top: 2vh;
   color: black; /* White text */
-  padding: 10px 24px; /* Some padding */
+  padding: .1vh .3vw; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
   font-family: Montserrat, Helvetica, Arial, sans-serif;
@@ -390,6 +398,9 @@ ul.a {
   transition: all 0.3s ease-in-out;
 
   border-style: double;
+/*  margin-top:20vh; 
+  margin-left: 4.5vw; 
+  align-items: center;*/
 }
 
 .btn-group button:hover {
