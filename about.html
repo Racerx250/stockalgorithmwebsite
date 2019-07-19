@@ -22,30 +22,29 @@
  -->
 	<script>
 	<!--
-	function getStylesheet() {
-		var currentMinutes = new Date().getMinutes();
-		var currentHours = new Date().getHours();
+	document.write("<link rel='stylesheet' href='css/indexopenstyle.css'>");
 
-		currentTime = currentMinutes + (currentHours*60);
+    function getColor() {
+        var currentMinutes = new Date().getMinutes();
+        var currentHours = new Date().getHours();
 
-	    if (currentTime < 510 || currentTime > 900) {
-	    	console.log("CLOSED");
-	       	document.write("<link rel='stylesheet' href='css/indexclosedstyle.css'>");
-	    } else {
-	    	console.log("OPEN");
-	    	document.write("<link rel='stylesheet' href='css/indexopenstyle.css'>");
-      	}
-	}
+        currentTime = currentMinutes + (currentHours*60);
 
-	getStylesheet();
+        if (currentTime < 510 || currentTime > 900) {
+            console.log("CLOSED");
+            document.getElementById("bodyID").style = 'background-image: linear-gradient(165deg, #592222 0%, #1d1d1d 51%, #2f2f2f 75%);';
+        }
+    }
 	-->
 	</script>
 	<noscript><link href="css/indexopenstyle.css" rel="stylesheet"></noscript>
 
 </head>
 
-<body>
-
+<body id="bodyID">
+	<script type="text/javascript">
+        getColor();
+    </script>
 	<header class="site-header">
 		<div class="site-header-main">
 			<div class="site-branding">

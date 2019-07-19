@@ -20,26 +20,30 @@
 
 
 <!-- 	<link rel="stylesheet" href="css/overviewstyle.css">
+
+
  -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 	<script>
 	<!--
 	var loaded = false;
-	function getStylesheet() {
-		var currentMinutes = new Date().getMinutes();
-		var currentHours = new Date().getHours();
 
-		currentTime = currentMinutes + (currentHours*60);
+   	document.write("<link rel='stylesheet' href='css/indexopenstyle.css'>");
 
-	    if (currentTime < 510 || currentTime > 900) {
-	    	console.log("CLOSED");
-	       	document.write("<link rel='stylesheet' href='css/indexclosedstyle.css'>");
-	    } else {
-	    	console.log("OPEN");
-	    	document.write("<link rel='stylesheet' href='css/indexopenstyle.css'>");
-      	}
-	}
+    function getColor() {
+        var currentMinutes = new Date().getMinutes();
+        var currentHours = new Date().getHours();
 
-	getStylesheet();
+        currentTime = currentMinutes + (currentHours*60);
+
+        if (currentTime < 510 || currentTime > 900) {
+            console.log("CLOSED");
+            document.getElementById("bodyID").style = 'background-image: linear-gradient(165deg, #592222 0%, #1d1d1d 51%, #2f2f2f 75%);';
+        }
+    }
+
     var stock_holds = new Array();
     var week_performance = new Array();
 
@@ -57,14 +61,15 @@
 	-->
 	</script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
 	<noscript><link href="css/indexopenstyle.css" rel="stylesheet"></noscript>
 
 </head>
 
-<body>
-
+<body id="bodyID">
+    <script type="text/javascript">
+        getColor();
+    </script>
 	<header class="site-header">
 		<div class="site-header-main">
 			<div class="site-branding">
@@ -85,7 +90,11 @@
 		</div>
 	</header>
 
-	<div class="leftbigcontainer">
+    <script type="text/javascript">
+        
+    </script>
+
+	<div class="leftbigcontainertop">
 		<h1 class="page-title">portfolio value</h1>
         <h1 class="page-title" id="stock_equity">$</h1>
 
@@ -123,6 +132,7 @@
                     console.log(week_performance);
 
                     rows = new Array(parseInt(week_performance.length));
+
                     for (i in week_performance) {
                         rows[parseInt(i)] = [parseInt(i), parseFloat(week_performance[i])];
                     }
@@ -177,7 +187,11 @@
 
 	</div>	
 
-	<div class="rightsmallcontainer" id="holds">
+    <div class="leftbigcontainerbottom">
+    </div>
+
+
+	<div class="rightsmallcontainertop" id="holds">
 		<h1 class="page-title" style="margin-bottom: 1vh">current holds</h1>
 		<script>
 		<!--
@@ -221,6 +235,8 @@
 		<div class="explanationWrapper">
 		</div> -->
 	</div>
+    <div class="rightsmallcontainerbottom" id="holds">
+    </div>
 
 </body>
 

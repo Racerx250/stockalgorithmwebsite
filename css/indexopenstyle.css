@@ -379,13 +379,27 @@ ul.a {
 }
 
 .btn-group-container {
-  margin-left: 10%;
+  width: 80%;
+  height: 19%;
+  padding-right: 10%;
+  padding-left: 10%;
+
+}
+
+
+.btn-group {
+  height:100%;
+  width: 100%;
+  display: inline-block;
 }
 
 .btn-group button {
+
+  float: left;
+  position: absolute;
   margin-top: 2vh;
   color: black; /* White text */
-  padding: .1vh .3vw; /* Some padding */
+  padding: .1vh 100%; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
   font-family: Montserrat, Helvetica, Arial, sans-serif;
@@ -441,22 +455,37 @@ ul.a {
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
-.leftbigcontainer {
+.leftbigcontainertop {
   margin: 0px; 
   margin-left: 10.7vw; 
   padding-top: 6vh; 
-  width: 51vw; 
+  width: 56vw; 
   left: 0; 
-  height: 74vh; 
+  height: 53vh; 
   position: absolute; 
   margin-top: 2vh; 
+  /*padding-left: -12vw; */
+  /*padding-right: 0vw; */
+  background-color: white; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.leftbigcontainerbottom {
+  margin: 0px; 
+  margin-left: 10.7vw; 
+  padding-top: 6vh; 
+  width: 56vw; 
+  left: 0; 
+  height: 14vh; 
+  position: absolute; 
+  margin-top: 63vh; 
   padding-left: -12vw; 
   padding-right: 0vw; 
   background-color: white; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.rightsmallcontainer {
+.rightsmallcontainertop {
   overflow: scroll; 
   overflow-x: hidden; 
   margin-top: 10vh; 
@@ -464,9 +493,24 @@ ul.a {
   margin-top: 2vh; 
   padding-top: 2vh; 
   padding-bottom: 4vh; 
-  width: 27.5vw; 
+  width: 22.5vw; 
   right: 3.9vw; 
-  height: 74vh; 
+  height: 40vh; 
+  background-color: white; 
+  position: absolute; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.rightsmallcontainerbottom {
+  overflow: scroll; 
+  overflow-x: hidden; 
+  margin-top: 50vh; 
+  margin-right: 5.5vw; 
+  /*margin-top: 2vh; */
+  padding-top: 2vh; 
+  padding-bottom: 4vh; 
+  width: 22.5vw; 
+  right: 3.9vw; 
+  height: 20vh; 
   background-color: white; 
   position: absolute; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
