@@ -1,1 +1,4 @@
 CMS 2
+XEL 1
+LNT 1
+ALLY 2
