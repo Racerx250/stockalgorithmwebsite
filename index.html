@@ -46,6 +46,7 @@
 
     var stock_holds = new Array();
     var week_performance = new Array();
+    var dividends = new Array();
 
     var counter = 0
     function waitFor(condition, callback) {
@@ -187,7 +188,8 @@
 
 	</div>	
 
-    <div class="leftbigcontainerbottom">
+    <div class="leftbigcontainerbottom" id="news">
+        <h1 class="page-title" style="margin-left: 2vw; margin-top: -3vh">updates</h1>
     </div>
 
 
@@ -199,43 +201,54 @@
 				console.log("omg");
 				console.log(stock_holds.length % 2);
 
-        if (stock_holds.length % 2 == 1 && stock_holds.length >= 1)
-        {
-          console.log('yis');
-          stock_holds = stock_holds.slice(0,stock_holds.length - 1);
-        }
+                if (stock_holds.length % 2 == 1 && stock_holds.length >= 1)
+                {
+                  console.log('yis');
+                  stock_holds = stock_holds.slice(0,stock_holds.length - 1);
+                }
 
 				var i;
-				// var temp_string = '';
 				for (i = 0; i < stock_holds.length / 2; i++) {
-          // window.setTimeout(() => {
-            var temp_string = '';
-            temp_string = temp_string.concat("<div class='explanationWrapper'>\n", "<div class='logoName'>" + stock_holds[2*i] + "\n", 
-            "</div>\n", "<div class='explanationText'>\n", stock_holds[(2*i) + 1] + " units\n", "</div>\n", "</div>\n");
+                    var temp_string = '';
+                    temp_string = temp_string.concat("<div class='explanationWrapper'>\n", "<div class='logoName'>" + stock_holds[2*i] + "\n", 
+                    "</div>\n", "<div class='explanationText'>\n", stock_holds[(2*i) + 1] + " units\n", "</div>\n", "</div>\n");
 
-            document.getElementById('holds').innerHTML = document.getElementById('holds').innerHTML.concat(temp_string);
-          // }, 1000)
-					
+                    document.getElementById('holds').innerHTML = document.getElementById('holds').innerHTML.concat(temp_string);					
 				}
-				// console.log(temp_string);
 			});
 
 			
 
 		-->
 		</script>
-
-		<!-- </div>
-		<div class="explanationWrapper">
-		</div>
-		<div class="explanationWrapper">
-		</div>
-		<div class="explanationWrapper">
-		</div>
-		<div class="explanationWrapper">
-		</div> -->
 	</div>
-    <div class="rightsmallcontainerbottom" id="holds">
+    <div class="rightsmallcontainerbottom" id="dividends">
+        <h1 class="page-title" style="margin-bottom: 1vh">pending dividends</h1>
+        <script type="text/javascript">
+            $.get('./dividends.txt', function(data) {
+                var temp = data.split("\n");
+                for (i in temp) {
+                    dividends = dividends.concat(temp[i].split(" "));
+                }
+            }, "text");
+            
+            waitFor(() => counter > 15 || dividends.length != [], () => {
+
+                if (dividends.length % 2 == 1 && dividends.length >= 1)
+                {
+                  dividends = dividends.slice(0,dividends.length - 1);
+                }
+
+                var i;
+                for (i = 0; i < dividends.length / 2; i++) {
+                    var temp_string = '';
+                    temp_string = temp_string.concat("<div class='explanationWrapper'>\n", "<div class='logoName'>" + dividends[2*i] + "\n", 
+                    "</div>\n", "<div class='explanationText'>\n", "$" + dividends[(2*i) + 1] + "\n", "</div>\n", "</div>\n");
+
+                    document.getElementById('dividends').innerHTML = document.getElementById('dividends').innerHTML.concat(temp_string);                    
+                }
+            });
+        </script>
     </div>
 
 </body>
