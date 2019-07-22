@@ -1,4 +1,4 @@
-CMS 2
+CMS 4
 XEL 1
-LNT 1
+LNT 2
 ALLY 2
