@@ -1,4 +1,4 @@
 CMS 4
 LNT 2
-DRE 2
-TRP 1
+ALLY 2
+TRP 2
