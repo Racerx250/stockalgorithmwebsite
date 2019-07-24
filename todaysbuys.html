@@ -112,7 +112,7 @@
 					for (i = 0; i < stock_buys.length; i++) {
 						var temp_string = '';
 						temp_string = temp_string.concat("<div class='containerExplanationWrapper'>\n", "<div class='logoName'>" + stock_buys[i] + "\n",
-										"</div>\n", "<div class='explanationText'>\n", "rank #" + i, "</div>\n", "</div>");
+										"</div>\n", "<div class='explanationText'>\n", "rank #" + (i + 1), "</div>\n", "</div>");
 
 						document.getElementById('buys').innerHTML = document.getElementById('buys').innerHTML.concat(temp_string);
 					}

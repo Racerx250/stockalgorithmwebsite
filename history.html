@@ -34,11 +34,24 @@
         }
     }
 
+	var counter = 0;
+    function waitFor(condition, callback) {
+        counter++;
+        if(!condition()) {
+            console.log('waiting');
+            window.setTimeout(waitFor.bind(null, condition, callback), 100); /* this checks the flag every 100 milliseconds*/
+        } else {
+            console.log('done');
+            callback();
+        }
+    }
+
+    var stock_history = new Array();
+
 	-->
 	</script>
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 
 	<noscript><link href="css/indexopenstyle.css" rel="stylesheet"></noscript>
 
@@ -68,40 +81,75 @@
 		</div>
 	</header>
 
-	<div class="fullwidthcontainer">
+	<div class="fullwidthcontainer" id = "historycontainer">
 		<script>
 		<!--
-			var numshows = 1;
-			var j;
-			for (j = 0; j < 10; j++) {
-				n =  new Date();
-				n.setDate(n.getDate() - j);
-				y = n.getFullYear();
-				m = n.getMonth() + 1;
-				d = n.getDate();
+			$.get('./stockfills.txt', function(data) {
+                var temp = data.split("\n");
+                for (i in temp) {
+                    stock_history = stock_history.concat(temp[i].split(" "));
+                }
+            }, "text");
+            
+            waitFor(() => counter > 15 || stock_history.length != [], () => {
+
+                if (stock_history.length % 5 != 0 && stock_history.length >= 1)
+                {
+                  stock_history = stock_history.slice(0,stock_history.length - 1);
+                }
+
+                console.log(stock_history);
+
+                if (stock_history.length != 0) {
+	                var i;
+	                var last_date = stock_history[0];
+	                document.getElementById('historycontainer').innerHTML = document.getElementById('historycontainer').innerHTML.concat("<h1 class='container-title'>" + last_date + " trades</h1>");
+	                for (i = 0; i < stock_history.length / 5; i++) {
+	                	if (last_date != stock_history[5*i]) {
+	                		last_date = stock_history[5*i];
+
+	                		new_string = "<h1 class='container-title'> </h1>".concat("<h1 class='container-title'> </h1>", "<h1 class='container-title'>" + last_date + " trades</h1>");
+	                		document.getElementById('historycontainer').innerHTML = document.getElementById('historycontainer').innerHTML.concat(new_string);
+	                	}
+	                    var temp_string = '';
+	                    temp_string = temp_string.concat("<div class='explanationWrapper'>\n", "<div class='logoName'>" + stock_history[(5*i) + 2] + "\n", 
+	                    "</div>\n", "<div class='explanationText'>\n", stock_history[(5*i) + 1] + ": " + stock_history[(5*i) + 4] + " @ $" + stock_history[(5*i) + 3] + "\n", "</div>\n", "</div>\n");
+
+	                    document.getElementById('historycontainer').innerHTML = document.getElementById('historycontainer').innerHTML.concat(temp_string);                    
+	                }
+	            }
+            });
+			// var numshows = 1;
+			// var j;
+			// for (j = 0; j < 10; j++) {
+			// 	n =  new Date();
+			// 	n.setDate(n.getDate() - j);
+			// 	y = n.getFullYear();
+			// 	m = n.getMonth() + 1;
+			// 	d = n.getDate();
 			   
-		    	document.write("<h1 class='container-title'>" + m + "/" + d + "/" + y + " buys</h1>");
+		 //    	document.write("<h1 class='container-title'>" + m + "/" + d + "/" + y + " buys</h1>");
 
-		    	var i;
-				for (i = 0; i < 1; i++) {
-					document.write("<div class='containerExplanationWrapper'>");
-					document.write("<div class='logoName'>AAPL");
-					document.write("</div>");
-					document.write("<div class='explanationText'>");
-					document.write(i + " units");
-					// document.write("Alfred C. Glassell, III, Fellow in Drug Policy at the Baker Institute");
-					document.write("</div>");			
-					document.write("</div>");
-				}
-		    	document.write("<h1 class='container-title'> </h1>");
-		    	document.write("<h1 class='container-title'> </h1>");
-		    }
+		 //    	var i;
+			// 	for (i = 0; i < 1; i++) {
+			// 		document.write("<div class='containerExplanationWrapper'>");
+			// 		document.write("<div class='logoName'>AAPL");
+			// 		document.write("</div>");
+			// 		document.write("<div class='explanationText'>");
+			// 		document.write(i + " units");
+			// 		// document.write("Alfred C. Glassell, III, Fellow in Drug Policy at the Baker Institute");
+			// 		document.write("</div>");			
+			// 		document.write("</div>");
+			// 	}
+		 //    	document.write("<h1 class='container-title'> </h1>");
+		 //    	document.write("<h1 class='container-title'> </h1>");
+		 //    }
 
-		    function showMore() {
-		    	console.log(numshows);
-		    	numshows++;
-		    	refresh();
-		    }
+		 //    function showMore() {
+		 //    	console.log(numshows);
+		 //    	numshows++;
+		 //    	refresh();
+		 //    }
 		-->
 		</script>
 		<!-- <div class="btn-group" style="margin-top:150px; margin-left: 43%; align-items: center;">
