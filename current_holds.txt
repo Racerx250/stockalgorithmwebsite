@@ -1,4 +1,3 @@
 NI 2
 ALLY 0
 TRP 2
-EPD 0
