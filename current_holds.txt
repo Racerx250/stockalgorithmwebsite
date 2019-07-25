@@ -1,4 +1,3 @@
 CMS 4
 LNT 2
 TRP 2
-EPD 0
