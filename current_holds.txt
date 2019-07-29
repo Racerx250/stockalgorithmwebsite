@@ -1,4 +1,1 @@
-PFE 1
-EQR 1
-LNT 1
-EPD 0
+PFE 2
