@@ -1,1 +1,3 @@
-PFE 1
+PFE 2
+LNT 1
+ALLY 2
