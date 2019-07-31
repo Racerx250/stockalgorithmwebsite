@@ -1,3 +1,4 @@
 PFE 2
-LNT 1
+HCP 2
+LNT 2
 ALLY 2
