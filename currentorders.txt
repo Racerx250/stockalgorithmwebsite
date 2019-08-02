@@ -1,4 +1,4 @@
-FE 2
-PFE 2
-LNT 2
-ALLY 4
+INTC 1
+HCP 2
+CMS 1
+C 1

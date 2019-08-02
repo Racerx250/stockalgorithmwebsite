@@ -1,4 +1,1 @@
-INTC 0
-HCP 0
 CMS 1
-C 0
