@@ -1,3 +1,2 @@
 FE 1
-LNT 1
 JCI 2
