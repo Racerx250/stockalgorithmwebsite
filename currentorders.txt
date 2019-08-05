@@ -1,4 +1,4 @@
-INTC 1
-HCP 2
-CMS 1
-C 1
+FE 1
+LNT 1
+JCI 1
+WFC 1
