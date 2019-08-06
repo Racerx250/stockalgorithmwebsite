@@ -1,4 +1,3 @@
-FE 1
-LNT 1
+FE 2
 JCI 2
-WFC 1
+XOM 1
