@@ -1,1 +1,3 @@
-WFC 1
+CMS 1
+LNT 2
+WFC 2
