@@ -1,1 +1,2 @@
-TRP 2
+LNT 1
+PEG 1
