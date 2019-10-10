@@ -1,4 +1,0 @@
-LNT 2
-PEG 2
-TRP 2
-WU 3
