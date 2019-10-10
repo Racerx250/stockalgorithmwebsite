@@ -1,2 +1,4 @@
-CMS 2
-AMH 6
+LNT 1
+PEG 1
+TRP 2
+WU 3
