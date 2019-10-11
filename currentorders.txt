@@ -1,4 +1,4 @@
 LNT 2
 PEG 2
 TRP 3
-AMH 3
+AMH 6
