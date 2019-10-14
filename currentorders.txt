@@ -1,4 +1,4 @@
-LNT 2
-PEG 2
-TRP 3
+AFL 1
 AMH 6
+WU 3
+IGF 1
