@@ -1,4 +1,3 @@
 BAM 1
-AMH 6
 WU 3
 IGF 1
