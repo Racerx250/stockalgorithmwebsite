@@ -1,4 +1,1 @@
 AFL 1
-AIV 1
-WU 3
-IGF 1
