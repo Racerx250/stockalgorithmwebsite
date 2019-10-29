@@ -1,3 +1,1 @@
-FE 2
-PEG 2
-TRP 2
+BAM 1
