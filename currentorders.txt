@@ -1,2 +1,2 @@
-AFL 1
-WU 6
+FE 1
+PEG 1
