@@ -1,3 +1,2 @@
 AFL 1
 DRE 4
-BAM 1
