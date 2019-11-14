@@ -1,4 +1,4 @@
 AFL 1
-FE 1
 DRE 4
-BAM 1
+AMH 3
+GPK 4
