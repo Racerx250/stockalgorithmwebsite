@@ -1,2 +1,2 @@
 DRE 2
-BAM 1
+BAM 2
