@@ -1,3 +1,2 @@
 AFL 1
-TRP 2
 BAM 2
