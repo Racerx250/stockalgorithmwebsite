@@ -1,2 +1,4 @@
 AFL 1
+LNT 1
+ALLY 2
 BAM 2
