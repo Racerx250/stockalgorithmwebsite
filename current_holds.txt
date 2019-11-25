@@ -1,4 +1,3 @@
-AFL 1
 LNT 1
 ALLY 4
 BAM 2
