@@ -1,2 +1,4 @@
 LNT 2
 ALLY 4
+WU 2
+WEN 3

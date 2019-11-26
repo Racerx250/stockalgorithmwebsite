@@ -1,4 +1,4 @@
-AFL 1
 LNT 2
 ALLY 4
-BAM 2
+WU 2
+WEN 3
