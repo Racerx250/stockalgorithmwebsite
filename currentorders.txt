@@ -1,4 +1,2 @@
 FE 2
-PGR 1
-DRE 2
 WU 3
