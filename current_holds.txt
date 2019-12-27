@@ -1,1 +1,4 @@
 AEE 2
+TRP 1
+WU 2
+CL 1
