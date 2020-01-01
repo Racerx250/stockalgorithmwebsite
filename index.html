@@ -47,6 +47,7 @@
     var stock_holds = new Array();
     var week_performance = new Array();
     var dividends = new Array();
+    var chart_loaded = false;
 
     var counter = 0;
     function waitFor(condition, callback) {
@@ -54,11 +55,20 @@
         if(!condition()) {
             console.log('waiting');
             window.setTimeout(waitFor.bind(null, condition, callback), 100); /* this checks the flag every 100 milliseconds*/
+
+            if (chart_loaded) {
+                // $('#chart_div').load(document.URL +  ' #chart_div');
+
+                document.getElementById('stock_equity').innerHTML = "$";
+                google.charts.load('current', {packages: ['corechart', 'line']});
+                google.charts.setOnLoadCallback(drawCurveTypes);
+            }
         } else {
-            console.log('done');
             callback();
         }
     }
+
+    // waitFor(() => false == true, () => {});
 	-->
 	</script>
 
@@ -116,73 +126,64 @@
         }
         readFiles();
 
-  			google.charts.load('current', {packages: ['corechart', 'line']});
-			google.charts.setOnLoadCallback(drawCurveTypes);
+		google.charts.load('current', {packages: ['corechart', 'line']});
+		google.charts.setOnLoadCallback(drawCurveTypes);
 
-			function drawCurveTypes() {
-                var data = new google.visualization.DataTable();
-                data.addColumn('number', 'X');
-                data.addColumn('number', '$');
+		function drawCurveTypes() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', '$');
 
-                waitFor(() => counter > 15 || week_performance.length != [], () => {
-                    if (week_performance[week_performance.length - 1] == '')
-                    {
-                        week_performance = week_performance.slice(0,week_performance.length - 2);;
-                    }
+            waitFor(() => counter > 15 || week_performance.length != [], () => {
+                if (week_performance[week_performance.length - 1] == '')
+                {
+                    week_performance = week_performance.slice(0,week_performance.length - 1);
+                }
 
-                    console.log(week_performance);
+                console.log(week_performance);
 
-                    rows = new Array(parseInt(week_performance.length));
+                rows = new Array(parseInt(week_performance.length));
 
-                    for (i in week_performance) {
-                        rows[parseInt(i)] = [parseInt(i), parseFloat(week_performance[i])];
-                    }
+                for (i in week_performance) {
+                    rows[parseInt(i)] = [parseInt(i), parseFloat(week_performance[i])];
+                }
 
-                    console.log(rows)
+                console.log(rows)
 
-                    document.getElementById('stock_equity').innerHTML = document.getElementById('stock_equity').innerHTML.concat(week_performance[week_performance.length - 1]);
+                document.getElementById('stock_equity').innerHTML = document.getElementById('stock_equity').innerHTML.concat(week_performance[week_performance.length - 1]);
 
-                    data.addRows(rows);
+                data.addRows(rows);
 
-                    var options = {
-                    hAxis: {
-                      title: 'Time'
-                    },
-                    // vAxis: {
-                    //   title: 'Popularity'
-                    // },
-                    series: {
-                      1: {curveType: 'function'}
-                    },
-                    height: 350,
-                    // width: 400
-                    };
+                var options = {
+                hAxis: {
+                  title: 'Time'
+                },
+                // vAxis: {
+                //   title: 'Popularity'
+                // },
+                series: {
+                  1: {curveType: 'function'}
+                },
+                height: 350,
+                // width: 400
+                };
 
-                    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-                    chart.draw(data, options);
-                });
-		    }
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+
+                chart_loaded = true;
+            });
+
+	    }
   		</script>
         <div class="btn-group-container">
       		<div class="btn-group">
-                <div class="dropdown">
-                    <button onclick="location.href='overview.html';">1 day</button>
-                </div>
-    			<div class="dropdown">
-    				<button onclick="location.href='overview.html';">1 week</button>
-    			</div>
-    			<div class="dropdown">
-    				<button onclick="location.href='history.html';">1 month</button>
-    			</div>
-    			<div class="dropdown">
-    				<button onclick="location.href='interviews.html';">3 months</button>
-    			</div>
-    			<div class="dropdown">
-    				<button onclick="location.href='interviews.html';">1 year</button>
-    			</div>
-    			<div class="dropdown">
-    				<button onclick="location.href='interviews.html';">all time</button>
-    			</div>
+                <button onclick="location.href='overview.html';">1 day</button>
+    			<button onclick="location.href='overview.html';">1 week</button>
+    			<button onclick="location.href='history.html';">1 month</button>
+    			<button onclick="location.href='interviews.html';">3 months</button>
+    			<button onclick="location.href='interviews.html';">1 year</button>
+    			<button onclick="location.href='interviews.html';">all time</button>
     		</div>
         </div>
 
