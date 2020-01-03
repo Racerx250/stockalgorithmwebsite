@@ -50,16 +50,20 @@
         console.log(button_list)
         console.log(button_id);
         document.getElementById(button_id).style.backgroundColor = "rgba(53, 228, 37, 0.6)"; 
-        document.getElementById(button_id).style.color = "white"; //
+        readFiles(button_id);
+        // document.getElementById(button_id).style.color = "white"; //
 
         button_list.forEach((remove_id) => {
             document.getElementById(remove_id).style.backgroundColor = "transparent"; 
-            document.getElementById(button_id).style.color = "black"; //
+            // document.getElementById(button_id).style.color = "black"; //
         });
+
+        // counter = 0;
+        drawCurveTypes();
     }
 
     var stock_holds = new Array();
-    var week_performance = new Array();
+    var performance_list = new Array();
     var dividends = new Array();
     var chart_loaded = false;
 
@@ -126,7 +130,7 @@
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   		<div id="chart_div" style="margin-top: -1vh;"></div>
   		<script>
-        function readFiles()
+        function readFiles(history_file)
         {
             $.get('./current_holds.txt', function(data) {
                 var temp = data.split("\n");
@@ -134,11 +138,12 @@
                     stock_holds = stock_holds.concat(temp[i].split(" "));
                 }
             }, "text");
-            $.get('./week.txt', function(data) {
-                week_performance = data.split("\n");
+            var per_strp = history_file.substring(0, history_file.length - 7)
+            $.get('./'.concat(per_strp,'.txt'), function(data) {
+                performance_list = data.split("\n");
             }, "text");
         }
-        readFiles();
+        readFiles("week_button");
 
 		google.charts.load('current', {packages: ['corechart', 'line']});
 		google.charts.setOnLoadCallback(drawCurveTypes);
@@ -148,24 +153,24 @@
             data.addColumn('number', 'X');
             data.addColumn('number', '$');
 
-            waitFor(() => counter > 15 || week_performance.length != [], () => {
-                if (week_performance[week_performance.length - 1] == '')
+            waitFor(() => counter > 15 || performance_list.length != [], () => {
+                if (performance_list[performance_list.length - 1] == '')
                 {
-                    week_performance = week_performance.slice(0,week_performance.length - 1);
+                    performance_list = performance_list.slice(0,performance_list.length - 1);
                 }
 
-                console.log(week_performance);
+                console.log(performance_list);
 
-                rows = new Array(parseInt(week_performance.length));
+                rows = new Array(parseInt(performance_list.length));
 
-                for (i in week_performance) {
-                    rows[parseInt(i)] = [parseInt(i), parseFloat(week_performance[i])];
+                for (i in performance_list) {
+                    rows[parseInt(i)] = [parseInt(i), parseFloat(performance_list[i])];
                 }
 
                 console.log(rows)
 
                 // document.getElementById('stock_equity').innerHTML = document.getElementById('stock_equity').innerHTML.concat(week_performance[week_performance.length - 1]);
-                document.getElementById('stock_equity').innerHTML = "$".concat(week_performance[week_performance.length - 1]);
+                document.getElementById('stock_equity').innerHTML = "$".concat(performance_list[performance_list.length - 1]);
 
                 data.addRows(rows);
 
@@ -264,6 +269,7 @@
 
     <script type="text/javascript">
         window.onresize = drawCurveTypes;
+        update_graph('week_button')
         setInterval(() => {
             console.log('hi');
         }, 3000);
