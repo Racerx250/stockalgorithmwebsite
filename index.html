@@ -57,9 +57,8 @@
             document.getElementById(remove_id).style.backgroundColor = "transparent"; 
             // document.getElementById(button_id).style.color = "black"; //
         });
-
-        // counter = 0;
-        drawCurveTypes();
+        
+        setTimeout(drawCurveTypes, 100);
     }
 
     var stock_holds = new Array();
@@ -271,7 +270,7 @@
         window.onresize = drawCurveTypes;
         update_graph('week_button')
         setInterval(() => {
-            console.log('hi');
+            // drawCurveTypes();
         }, 3000);
     </script>
 
