@@ -420,6 +420,7 @@ ul.a {
   width: 20%;
   /*padding: 10px 24px;*/
   display:inline-block;
+  outline: none;
   
  /* box-sizing: border-box;
    text-decoration:none;

@@ -44,6 +44,20 @@
         }
     }
 
+    function update_graph(button_id) {
+        var button_list = ["day_button", "week_button", "month_button", "tmonth_button", "year_button", "all_button"];
+        button_list.splice(button_list.indexOf(button_id), 1);
+        console.log(button_list)
+        console.log(button_id);
+        document.getElementById(button_id).style.backgroundColor = "rgba(53, 228, 37, 0.6)"; 
+        document.getElementById(button_id).style.color = "white"; //
+
+        button_list.forEach((remove_id) => {
+            document.getElementById(remove_id).style.backgroundColor = "transparent"; 
+            document.getElementById(button_id).style.color = "black"; //
+        });
+    }
+
     var stock_holds = new Array();
     var week_performance = new Array();
     var dividends = new Array();
@@ -150,7 +164,8 @@
 
                 console.log(rows)
 
-                document.getElementById('stock_equity').innerHTML = document.getElementById('stock_equity').innerHTML.concat(week_performance[week_performance.length - 1]);
+                // document.getElementById('stock_equity').innerHTML = document.getElementById('stock_equity').innerHTML.concat(week_performance[week_performance.length - 1]);
+                document.getElementById('stock_equity').innerHTML = "$".concat(week_performance[week_performance.length - 1]);
 
                 data.addRows(rows);
 
@@ -178,12 +193,12 @@
   		</script>
         <div class="btn-group-container">
       		<div class="btn-group">
-                <button onclick="location.href='overview.html';">1 day</button>
-    			<button onclick="location.href='overview.html';">1 week</button>
-    			<button onclick="location.href='history.html';">1 month</button>
-    			<button onclick="location.href='interviews.html';">3 months</button>
-    			<button onclick="location.href='interviews.html';">1 year</button>
-    			<button onclick="location.href='interviews.html';">all time</button>
+                <button id="day_button" onclick=update_graph("day_button")>1 day</button>
+    			<button id="week_button" onclick=update_graph("week_button")>1 week</button>
+    			<button id="month_button" onclick=update_graph("month_button")>1 month</button>
+    			<button id="tmonth_button" onclick=update_graph("tmonth_button")>3 months</button>
+    			<button id="year_button" onclick=update_graph("year_button")>1 year</button>
+    			<button id="all_button" onclick=update_graph("all_button")>all time</button>
     		</div>
         </div>
 
@@ -199,12 +214,10 @@
 		<script>
 		<!--
 			waitFor(() => counter > 15 || stock_holds.length != [], () => {
-				console.log("omg");
 				console.log(stock_holds.length % 2);
 
                 if (stock_holds.length % 2 == 1 && stock_holds.length >= 1)
                 {
-                  console.log('yis');
                   stock_holds = stock_holds.slice(0,stock_holds.length - 1);
                 }
 
@@ -217,9 +230,6 @@
                     document.getElementById('holds').innerHTML = document.getElementById('holds').innerHTML.concat(temp_string);					
 				}
 			});
-
-			
-
 		-->
 		</script>
 	</div>
@@ -251,6 +261,13 @@
             });
         </script>
     </div>
+
+    <script type="text/javascript">
+        window.onresize = drawCurveTypes;
+        setInterval(() => {
+            console.log('hi');
+        }, 3000);
+    </script>
 
 </body>
 
