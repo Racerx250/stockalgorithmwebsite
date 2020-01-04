@@ -234,6 +234,19 @@ ul.a {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
 }
 
+.emptyText {
+  position: relative;
+  text-align: center;
+  margin-top: 38%;
+  font-weight: 300;
+
+/*  margin-bottom: 2vh;
+*/  line-height: 1.6;
+  font-size: 95%;
+  color: #414650;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
+}
+
 .page-title {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   color: black;
@@ -486,6 +499,8 @@ ul.a {
 }
 
 .leftbigcontainerbottom {
+  overflow: scroll; 
+  overflow-x: hidden;
   margin: 0px; 
   margin-left: 10.7vw; 
   padding-top: 6vh; 

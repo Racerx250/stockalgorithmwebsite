@@ -50,7 +50,7 @@
         console.log(button_list)
         console.log(button_id);
         document.getElementById(button_id).style.backgroundColor = "rgba(53, 228, 37, 0.6)"; 
-        readFiles(button_id);
+        readFile(button_id);
         // document.getElementById(button_id).style.color = "white"; //
 
         button_list.forEach((remove_id) => {
@@ -58,13 +58,14 @@
             // document.getElementById(button_id).style.color = "black"; //
         });
         
-        setTimeout(drawCurveTypes, 100);
+        setTimeout(drawCurveTypes, 200);
     }
 
     var stock_holds = new Array();
     var performance_list = new Array();
     var dividends = new Array();
     var chart_loaded = false;
+    var update_list = new Array();
 
     var counter = 0;
     function waitFor(condition, callback) {
@@ -85,7 +86,6 @@
         }
     }
 
-    // waitFor(() => false == true, () => {});
 	-->
 	</script>
 
@@ -129,20 +129,28 @@
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   		<div id="chart_div" style="margin-top: -1vh;"></div>
   		<script>
-        function readFiles(history_file)
+        $.get('./current_holds.txt', function(data) {
+            var temp = data.split("\n");
+            for (i in temp) {
+                stock_holds = stock_holds.concat(temp[i].split(" "));
+            }
+        }, "text");
+
+        $.get('./updates.txt', function(data) {
+            var temp = data.split("\n");
+            for (i in temp) {
+                update_list = update_list.concat(temp[i].split("~"));
+            }
+        }, "text");
+
+        function readFile(history_file)
         {
-            $.get('./current_holds.txt', function(data) {
-                var temp = data.split("\n");
-                for (i in temp) {
-                    stock_holds = stock_holds.concat(temp[i].split(" "));
-                }
-            }, "text");
             var per_strp = history_file.substring(0, history_file.length - 7)
             $.get('./'.concat(per_strp,'.txt'), function(data) {
                 performance_list = data.split("\n");
             }, "text");
         }
-        readFiles("week_button");
+        readFile("week_button");
 
 		google.charts.load('current', {packages: ['corechart', 'line']});
 		google.charts.setOnLoadCallback(drawCurveTypes);
@@ -210,11 +218,44 @@
 
     <div class="leftbigcontainerbottom" id="news">
         <h1 class="page-title" style="margin-left: 2vw; margin-top: -3vh">updates</h1>
+        <div id="update_inner_wrapper" class="innerWrapper"></div>
+        <script>
+        <!--
+            waitFor(() => counter > 15 || update_list.length != [], () => {
+                console.log(update_list);
+                console.log('here');
+
+                if (update_list.length % 2 == 1 && update_list.length >= 1)
+                {
+                  update_list = update_list.slice(0,update_list.length - 1);
+                }
+
+                var i;
+                for (i = 0; i < update_list.length / 2; i++) {
+                    var temp_stringd = '<p class="exploreSubText" style="text-align: left; width:49%; display: inline-block;">'.concat(update_list[2*i],'</p>');
+                    var temp_stringm = '<p class="exploreSubText" style="text-align: right; width:49%; display: inline-block;">'.concat(update_list[2*i+1],'</p>');
+
+                    document.getElementById('update_inner_wrapper').innerHTML = document.getElementById('update_inner_wrapper').innerHTML.concat('<br />', temp_stringd, temp_stringm, '<hr />');                    
+                }
+
+                if (i == 0) {
+                    var temp_string = "<div class='emptyText' style='margin-top: 5%;'>no current updates</div>";
+                    document.getElementById('update_inner_wrapper').innerHTML = document.getElementById('update_inner_wrapper').innerHTML.concat(temp_string);
+                }
+                
+            });
+        -->
+        </script>
+            <!-- <br />
+            <p class="exploreSubText" style="text-align: left; width:49%; display: inline-block;">1/3/2020 6:29PM</p>
+            <p class="exploreSubText" style="text-align: right; width:49%; display: inline-block;">major functionality updates</p>
+            <hr /> -->
     </div>
 
 
 	<div class="rightsmallcontainertop" id="holds">
 		<h1 class="page-title" style="margin-bottom: 1vh">current holds</h1>
+        <!-- <div id='holdemptyText' class='emptyText'>no current holds</div> -->
 		<script>
 		<!--
 			waitFor(() => counter > 15 || stock_holds.length != [], () => {
@@ -233,6 +274,11 @@
 
                     document.getElementById('holds').innerHTML = document.getElementById('holds').innerHTML.concat(temp_string);					
 				}
+
+                if (i == 0) {
+                    var temp_string = "<div class='emptyText'>no current holds</div>";
+                    document.getElementById('holds').innerHTML = document.getElementById('holds').innerHTML.concat(temp_string);
+                }
 			});
 		-->
 		</script>
@@ -262,6 +308,10 @@
 
                     document.getElementById('dividends').innerHTML = document.getElementById('dividends').innerHTML.concat(temp_string);                    
                 }
+                if (i == 0) {
+                    var temp_string = "<div class='emptyText'>no pending dividends</div>";
+                    document.getElementById('dividends').innerHTML = document.getElementById('dividends').innerHTML.concat(temp_string);
+                }
             });
         </script>
     </div>
@@ -269,9 +319,10 @@
     <script type="text/javascript">
         window.onresize = drawCurveTypes;
         update_graph('week_button')
-        setInterval(() => {
-            // drawCurveTypes();
-        }, 3000);
+        // setInterval(() => {
+        //     console.log(update_list)
+        //     // drawCurveTypes();
+        // }, 3000);
     </script>
 
 </body>
