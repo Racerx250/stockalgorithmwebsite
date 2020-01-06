@@ -1,2 +1,4 @@
-AEE 2
-TRP 2
+FE 2
+CMS 1
+XEL 2
+LNT 2
