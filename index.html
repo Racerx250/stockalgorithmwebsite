@@ -39,7 +39,7 @@
         currentTime = currentMinutes + (currentHours*60);
 
         if (currentTime < 510 || currentTime > 900) {
-            console.log("CLOSED");
+            // console.log("CLOSED");
             document.getElementById("bodyID").style = 'background-image: linear-gradient(165deg, #592222 0%, #1d1d1d 51%, #2f2f2f 75%);';
         }
     }
@@ -47,10 +47,11 @@
     function update_graph(button_id) {
         var button_list = ["day_button", "week_button", "month_button", "tmonth_button", "year_button", "all_button"];
         button_list.splice(button_list.indexOf(button_id), 1);
-        console.log(button_list)
-        console.log(button_id);
+        // console.log(button_list)
+        // console.log(button_id);
         document.getElementById(button_id).style.backgroundColor = "rgba(53, 228, 37, 0.6)"; 
         readFile(button_id);
+
         // document.getElementById(button_id).style.color = "white"; //
 
         button_list.forEach((remove_id) => {
@@ -59,6 +60,7 @@
         });
         
         setTimeout(drawCurveTypes, 200);
+        setTimeout(drawCurveTypes, 1000);
     }
 
     var stock_holds = new Array();
@@ -71,7 +73,7 @@
     function waitFor(condition, callback) {
         counter++;
         if(!condition()) {
-            console.log('waiting');
+            // console.log('waiting');
             window.setTimeout(waitFor.bind(null, condition, callback), 100); /* this checks the flag every 100 milliseconds*/
 
             if (chart_loaded) {
@@ -129,28 +131,34 @@
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   		<div id="chart_div" style="margin-top: -1vh;"></div>
   		<script>
-        $.get('./current_holds.txt', function(data) {
-            var temp = data.split("\n");
-            for (i in temp) {
-                stock_holds = stock_holds.concat(temp[i].split(" "));
-            }
-        }, "text");
+        
+        function readHoldsUpdates() {
+            // console.log('reading');
+            $.get('./current_holds.txt', function(data) {
+                var temp = data.split("\n");
+                for (i in temp) {
+                    stock_holds = stock_holds.concat(temp[i].split(" "));
+                }
+            }, "text");
 
-        $.get('./updates.txt', function(data) {
-            var temp = data.split("\n");
-            for (i in temp) {
-                update_list = update_list.concat(temp[i].split("~"));
-            }
-        }, "text");
+            $.get('./updates.txt', function(data) {
+                var temp = data.split("\n");
+                for (i in temp) {
+                    update_list = update_list.concat(temp[i].split("~"));
+                }
+            }, "text");
+        }
+        readHoldsUpdates();
 
         function readFile(history_file)
         {
+
             var per_strp = history_file.substring(0, history_file.length - 7)
             $.get('./'.concat(per_strp,'.txt'), function(data) {
                 performance_list = data.split("\n");
             }, "text");
         }
-        readFile("week_button");
+        readFile("day_button");
 
 		google.charts.load('current', {packages: ['corechart', 'line']});
 		google.charts.setOnLoadCallback(drawCurveTypes);
@@ -166,7 +174,7 @@
                     performance_list = performance_list.slice(0,performance_list.length - 1);
                 }
 
-                console.log(performance_list);
+                // console.log(performance_list);
 
                 rows = new Array(parseInt(performance_list.length));
 
@@ -174,7 +182,7 @@
                     rows[parseInt(i)] = [parseInt(i), parseFloat(performance_list[i])];
                 }
 
-                console.log(rows)
+                // console.log(rows)
 
                 // document.getElementById('stock_equity').innerHTML = document.getElementById('stock_equity').innerHTML.concat(week_performance[week_performance.length - 1]);
                 document.getElementById('stock_equity').innerHTML = "$".concat(performance_list[performance_list.length - 1]);
@@ -222,8 +230,8 @@
         <script>
         <!--
             waitFor(() => counter > 15 || update_list.length != [], () => {
-                console.log(update_list);
-                console.log('here');
+                // console.log(update_list);
+                // console.log('here');
 
                 if (update_list.length % 2 == 1 && update_list.length >= 1)
                 {
@@ -259,7 +267,7 @@
 		<script>
 		<!--
 			waitFor(() => counter > 15 || stock_holds.length != [], () => {
-				console.log(stock_holds.length % 2);
+				// console.log(stock_holds.length % 2);
 
                 if (stock_holds.length % 2 == 1 && stock_holds.length >= 1)
                 {
@@ -318,11 +326,13 @@
 
     <script type="text/javascript">
         window.onresize = drawCurveTypes;
-        update_graph('week_button')
+        update_graph('day_button');
         // setInterval(() => {
-        //     console.log(update_list)
-        //     // drawCurveTypes();
-        // }, 3000);
+        //     console.log(performance_list)
+        //     drawCurveTypes();
+        //     readHoldsUpdates();
+        // }, 1000);
+
     </script>
 
 </body>
