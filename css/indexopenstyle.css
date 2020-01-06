@@ -281,14 +281,17 @@ ul.a {
 /*  padding: -5rem 0.625rem; 
 */  
 }
-  @media (min-width: 768px) {
-    .site-header-main {
-      -webkit-align-items: center;
-      align-items: center;
-      -webkit-flex-direction: row;
-      flex-direction: row;
-      -webkit-justify-content: space-between;
-      justify-content: space-between; } }
+
+@media (min-width: 768px) {
+  .site-header-main {
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-between;
+    justify-content: space-between; 
+  } 
+}
 
 .site-branding {
   color: black;
@@ -300,14 +303,11 @@ ul.a {
       } 
     }
 
-.site-title {
-  font-size: 1.175rem;
-  font-weight: 700; }
-
 .site-description {
   font-size: 0.875rem;
   font-weight: 200;
-  margin-top: 0rem; }
+  margin-top: 0rem; 
+}
 
 .site-navigation {
   font-size: 1.125rem;
@@ -336,13 +336,18 @@ ul.a {
     @media (min-width: 768px) {
       .site-navigation a {
         padding-left: 1.25rem;
-        padding-right: 0; } }
+        padding-right: 0; 
+      } 
+    }
     .site-navigation a:hover {
-      color: black; }
+      color: black; 
+    }
     .site-navigation a.current-item {
-      color: black; }
-      .site-navigation a.current-item:after {
-        border-bottom-color: black; }
+      color: black; 
+    }
+    .site-navigation a.current-item:after {
+      border-bottom-color: black; 
+    }
 
 
 .site-header-main {
@@ -380,17 +385,13 @@ ul.a {
   font-weight: 700; 
 }
 
+
 .site-description {
   font-size: 0.875rem;
   font-weight: 200;
   margin-top: 0.25rem; 
 }
 
-.dropdown {
-  /*margin-left: 5vw;*/
-  /*position: relative;*/
-  /*display: inline-block;*/
-}
 
 .btn-group-container {
   display: flex;
@@ -709,6 +710,7 @@ ul.a {
   height: 36.5%;
   display: block; /* Make the buttons appear below each other */
   font-size: .8vw;
+  outline: none;
 }
 
 .btn-group-new button:last-child {
@@ -739,4 +741,131 @@ ul.a {
     font-weight: 300; 
     text-align: left;
   }
+
+@media (max-width: 768px) {
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: inline;
+  }
+  .site-header-main {
+    padding: 0;
+    z-index: 1;
+    height: 5vh;
+    margin: 0vw;
+    width: 1000px;
+    padding-top: 1vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    max-width: calc(100vw + 10px);
+    position:fixed;
+    /*width: 100vw;*/
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-between;
+    justify-content: space-between; 
+  } 
+  .site-title {
+    margin: auto;
+    -webkit-align-items: left;
+    align-items: left;
+    font-size: .675rem;
+    font-weight: 700; 
+  }
+
+  .site-description {
+    -webkit-align-items: left;
+    align-items: left;
+    font-size: 0.375rem;
+    font-weight: 200;
+    margin-top: 0.25rem; 
+  }
+
+  .site-navigation a {
+    font-size: 0.375rem;
+    font-weight: 200;
+    padding-top: 0;
+    padding-left: .15rem;
+    padding-right: 0; 
+  } 
+
+  .site-navigation a:hover {
+    color: black; 
+  }
+  .site-navigation a.current-item {
+    color: black; 
+    font-weight: 500;
+  }
+  .site-navigation a.current-item:after {
+    border-bottom-color: transparent; 
+  }
+
+  .leftbigcontainertop {
+    z-index: -1;
+    margin: 0px; 
+    margin-left: 2vw; 
+    padding-top: 6vh; 
+    width: 96vw; 
+    left: 0; 
+    height: 53vh; 
+    position: absolute; 
+    margin-top: calc(10vh + 4vw); 
+    /*padding-left: -12vw; */
+    /*padding-right: 0vw; */
+    background-color: white; 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .leftbigcontainerbottom {
+    overflow: scroll; 
+    overflow-x: hidden;
+    margin: 0px; 
+    margin-left: 10.7vw; 
+    padding-top: 60vh; 
+    width: 56vw; 
+    left: 0; 
+    height: 14vh; 
+    position: absolute; 
+    margin-top: 630vh; 
+    padding-left: -12vw; 
+    padding-right: 0vw; 
+    background-color: white; 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .rightsmallcontainertop {
+    overflow: scroll; 
+    overflow-x: hidden; 
+    margin-top: 10vh; 
+    margin-right: 5.5vw; 
+    margin-top: 200vh; 
+    padding-top: 2vh; 
+    padding-bottom: 4vh; 
+    width: 22.5vw; 
+    right: 3.9vw; 
+    height: 40vh; 
+    background-color: white; 
+    position: absolute; 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  .rightsmallcontainerbottom {
+    overflow: scroll; 
+    overflow-x: hidden; 
+    margin-top: 500vh; 
+    margin-right: 5.5vw; 
+    /*margin-top: 2vh; */
+    padding-top: 2vh; 
+    padding-bottom: 4vh; 
+    width: 22.5vw; 
+    right: 3.9vw; 
+    height: 27vh; 
+    background-color: white; 
+    position: absolute; 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+}
 
