@@ -1,4 +1,4 @@
 FE 2
-CMS 1
+CMS 2
 XEL 2
 LNT 2
