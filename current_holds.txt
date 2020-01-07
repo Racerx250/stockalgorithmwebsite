@@ -1,4 +1,1 @@
-FE 2
 CMS 1
-XEL 2
-LNT 2
