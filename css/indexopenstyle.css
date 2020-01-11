@@ -254,9 +254,7 @@ ul.a {
   font-weight: 200;
   margin-left: 10%;
   margin-bottom: 5px;
-
-/*  text-align: center; 
-*/}
+}
 
 
 /* ------------------------------------------- */
@@ -420,8 +418,6 @@ ul.a {
 
   color: black;
   background-color: transparent;
-  /*border-bottom-color: transparent;*/
-  /*border-top-color: transparent;*/
 
   transition: all 0.3s ease-in-out;
 
@@ -432,19 +428,8 @@ ul.a {
   border-radius:2em;
   margin: 2.5%;
   width: 20%;
-  /*padding: 10px 24px;*/
   display:inline-block;
   outline: none;
-  
- /* box-sizing: border-box;
-   text-decoration:none;
-   font-family:'Roboto',sans-serif;
-   font-weight:300;
-   color:#FFFFFF;
-   background-color:#4eb5f1;
-   text-align:center;
-   transition: all 0.2s;*/
-
 }
 
 .btn-group button:hover {
@@ -718,6 +703,13 @@ ul.a {
 }
 
 
+.chart-div {
+  position: absolute;
+  z-index: -1;
+  margin-top: 
+}
+
+
 /* Add a background color on hover */
 .btn-group-new button:hover {
   transition: 0.3s ease-in-out;
@@ -743,6 +735,10 @@ ul.a {
   }
 
 @media (max-width: 768px) {
+  html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+  }
   ul {
     padding: 0;
     margin: 0;
@@ -756,6 +752,7 @@ ul.a {
   li {
     display: inline;
   }
+
   .site-header-main {
     overflow: auto;
     padding: 0;
@@ -779,7 +776,7 @@ ul.a {
     margin-left: 2vw;
     -webkit-align-items: left;
     align-items: left;
-    font-size: .775rem;
+    font-size: .9rem;
     font-weight: 700; 
   }
 
@@ -787,7 +784,7 @@ ul.a {
     -webkit-align-items: left;
     align-items: left;
     margin-left: 2vw;
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     font-weight: 400;
     margin-top: 0.25rem; 
   }
@@ -799,7 +796,7 @@ ul.a {
   } 
 
   .site-navigation a {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     font-weight: 200;
     padding: 0;
   } 
@@ -817,18 +814,29 @@ ul.a {
 
   .leftbigcontainertop {
     z-index: -1;
-    margin: 0px; 
-    margin-left: 2vw; 
-    padding-top: 6vh; 
-    width: 96vw; 
+    margin: 1vw; 
+    width: 97vw; 
+    max-width: 98vw;
+    padding-top: 2vh;
+    padding-left: 2vh;
     left: 0; 
     height: 53vh; 
     position: absolute; 
-    margin-top: calc(10vh + 4vw); 
+    margin-top: calc(10vh + 1vw); 
     /*padding-left: -12vw; */
     /*padding-right: 0vw; */
     background-color: white; 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .page-title {
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    color: black;
+    font-size: 1rem;
+    font-weight: 200;
+    /*margin-left: 10%;*/
+    margin: 0;
+    z-index: 1;
   }
 
   .leftbigcontainerbottom {
@@ -879,5 +887,46 @@ ul.a {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   }
 
+  .btn-group-container {
+    display: flex;
+    width: 80%;
+    height: 19%;
+    padding-right: 10%;
+    padding-left: 10%;
+  }
+
+
+  .btn-group {
+    margin-top: -7.5vh;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    width: 100%;
+    display: flex;
+  }
+
+  .btn-group button {
+    font-size: .5rem;
+
+    position: relative;
+    cursor: pointer; 
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+
+    color: black;
+    background-color: transparent;
+
+    transition: all 0.3s ease-in-out;
+
+    border-style: double;
+
+    padding:0.2em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    margin: 2.5%;
+    width: 20%;
+    display:inline-block;
+    outline: none;
+
+  }
 }
 
