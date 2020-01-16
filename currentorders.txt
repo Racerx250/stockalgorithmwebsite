@@ -1,2 +1,3 @@
-LNT 1
-DRE 4
+DNKN 1
+BKH 1
+K 1
