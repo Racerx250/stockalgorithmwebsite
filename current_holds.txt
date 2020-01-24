@@ -1,2 +1,2 @@
 K 1
-ARMK 1
+ARMK 2
