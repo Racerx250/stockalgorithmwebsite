@@ -1,4 +1,2 @@
-FE 1
-SO 1
 K 1
 ARMK 1
