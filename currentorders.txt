@@ -1,4 +1,4 @@
-SO 3
+FE 1
+DRE 2
 GLPI 1
-FNF 1
 INVH 2
