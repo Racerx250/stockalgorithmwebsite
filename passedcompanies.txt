@@ -1,6 +1,0 @@
-LNT
-PING
-SO
-PEP
-CME
-ICE
