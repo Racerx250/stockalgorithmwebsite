@@ -1,2 +1,7 @@
+PEP
+STE
+CME
 PING
+LNT
+SO
 ICE
